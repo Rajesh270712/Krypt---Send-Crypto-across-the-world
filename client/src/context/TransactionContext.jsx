@@ -13,9 +13,6 @@ const getEthereumContract =async () => {
   const provider = new ethers.BrowserProvider(ethereum)
   const signer = await provider.getSigner();
   const TransactionContract = new ethers.Contract(contractAddress, contractAbi, signer);
-
-  console.log("TransactionContract", TransactionContract);
-
   return TransactionContract;
 };
 
@@ -40,7 +37,6 @@ const [transactions, setTransactions] = useState([]);
       } else {
         console.log("No accounts found");
       }
-      console.log(accounts);
     } catch (error) {
       console.log(error);
     }
@@ -106,8 +102,6 @@ const [transactions, setTransactions] = useState([]);
           keyword: transaction.keyword,
           amount: ethers.formatUnits(transaction.amount, "ether")
         }));
-
-        console.log("structuredTransactions",structuredTransactions);
 
         setTransactions(structuredTransactions);
       } else {
